@@ -33,6 +33,7 @@ def get_existing_usernames():
     ))
 
 #App UI
+os.makedirs("data", exist_ok=True)
 st.set_page_config(page_title="Gym Tracker", layout="wide")
 st.title("🏋️ Gym Tracker App")
 
