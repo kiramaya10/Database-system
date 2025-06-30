@@ -5,7 +5,7 @@ import os
 import altair as alt
 from datetime import date
 
-#Helpers
+
 def load_user_data(username):
     exercise_file = f"data/{username}_exercises.json"
     diet_file = f"data/{username}_diet.json"
@@ -32,19 +32,19 @@ def get_existing_usernames():
         f.split("_")[0] for f in os.listdir("data") if f.endswith("_exercises.json")
     ))
 
-#App UI
+
 os.makedirs("data", exist_ok=True)
 st.set_page_config(page_title="Gym Tracker", layout="wide")
 st.title("🏋️ Gym Tracker App")
 
-# Load last used user
+
 username_file = "data/last_user.txt"
 default_username = ""
 if os.path.exists(username_file):
     with open(username_file, "r") as f:
         default_username = f.read().strip()
 
-#User Selection
+
 existing_users = get_existing_usernames()
 selected = st.selectbox("Select your user:", options=existing_users + ["➕ New user..."])
 
@@ -62,7 +62,7 @@ if username:
         st.session_state[f'exercises_{username}'] = exercises
         st.session_state[f'diet_log_{username}'] = diet
 
-    # --- Profile Card ---
+   
     st.markdown("### 👤 Profile")
     with st.container():
         col1, col2 = st.columns([1, 5])
@@ -72,7 +72,7 @@ if username:
             st.markdown(f"**Welcome, `{username}`!**")
             st.caption(f"📅 Today is {date.today().strftime('%A, %d %B %Y')}")
 
-    # --- Goal Setting ---
+   
     goal_file = f"data/{username}_goal.txt"
     default_goal = ""
     if os.path.exists(goal_file):
